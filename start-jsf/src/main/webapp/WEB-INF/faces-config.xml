@@ -11,6 +11,15 @@
 		</locale-config>
 	</application>
 	
+	<navigation-rule>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>dashboard</from-outcome>
+            <to-view-id>/dashboard.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+	
+	
 	<component>
 		<component-type>org.primefaces.component.SentinelMenu</component-type>
 		<component-class>org.primefaces.sentinel.component.menu.SentinelMenu</component-class>

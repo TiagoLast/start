@@ -32,6 +32,12 @@ public class FacesUtil {
 				new FacesMessage(FacesMessage.SEVERITY_WARN, message, message));
 	}
 	
+	public static void addInfoMessageWarnLogin() {
+		String message = "Usuário e Senha Invalidos, Por favor entre com dados válidos";
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_WARN, message, message));
+	}
+	
 	public static void addInfoMessageInf() {
 		String message = "Registro gravado com sucesso!";
 		FacesContext.getCurrentInstance().addMessage(null,

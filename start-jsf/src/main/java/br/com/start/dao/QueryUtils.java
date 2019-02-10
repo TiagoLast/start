@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import br.com.start.entity.UsuarioEntity;
+
 public class QueryUtils<T> {
 
 	@Inject
@@ -25,6 +27,37 @@ public class QueryUtils<T> {
 	@SuppressWarnings("unchecked")
 	public List<Long> getIds(Class<T> classe) {
 		return manager.createQuery("select p.id from " + classe.getName() + " p").getResultList();
+	}
+
+	public UsuarioEntity logar(UsuarioEntity usuario) {
+		UsuarioEntity usuarioEntity = null;
+		try {
+			usuarioEntity = (UsuarioEntity) manager
+					.createQuery("from UsuarioEntity p where p.login =:login and p.senha =:senha")
+					.setParameter("login", usuario.getLogin()).setParameter("senha", usuario.getSenha())
+					.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+		return usuarioEntity;
+	}
+
+	public boolean validarUsuarioESenha(UsuarioEntity usuario) {
+		try {
+
+			UsuarioEntity usuarioAutenticado = new UsuarioEntity();
+			usuarioAutenticado = (UsuarioEntity) manager
+					.createQuery("select p from UsuarioEntity p where p.login =:login and p.senha =:senha")
+					.setParameter("login", usuario.getLogin()).setParameter("senha", usuario.getSenha())
+					.getSingleResult();
+			if (usuarioAutenticado == null) {
+				return false;
+			}
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+
 	}
 
 	@SuppressWarnings("unchecked")

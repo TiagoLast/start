@@ -26,6 +26,7 @@
 		<class>br.com.start.entity.PacienteEntity</class>
 		<class>br.com.start.entity.ConvenioEntity</class>
 		<class>br.com.start.entity.ProntuarioEntity</class>
+		<class>br.com.start.entity.UsuarioEntity</class>
 		
 		
 		<properties>
